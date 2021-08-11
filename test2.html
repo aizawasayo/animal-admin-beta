@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div>
+      <button id="btnId">我是目标oBtn，点击我</button>
+    </div>
+    <script>
+      var oBtn = document.querySelector('#btnId')
+      // 或者
+      var btnClick = function () {
+        // 函数表达式
+        // 函数内部的this指向 oBtn (DOM元素对象/节点对象)
+        console.log('我是oBtn绑定的第二个onclick事件', this, this.id)
+      }
+
+      oBtn.onclick = btnClick // 把函数赋值给一个事件处理程序属性(onclick)
+      // oBtn.onclick = null //去掉绑定的事件
+      function btnClick1() {
+        console.log('我是oBtn绑定的监听事件一')
+      }
+      function btnClick2() {
+        console.log('我是oBtn绑定的监听事件二', this)
+      }
+      oBtn.addEventListener('click', btnClick1)
+      oBtn.addEventListener('click', btnClick2)
+
+      // oBtn.onclick = function (event) {
+      //   // 匿名函数
+      //   console.log('我是oBtn绑定的第一个onclick事件')
+      // }
+
+      // oBtn.removeEventListener('click', btnClick1) // 解绑监听事件
+    </script>
+  </body>
+</html>

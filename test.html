@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div>
+      <button id="btnId">我是目标oBtn，点击我</button>
+    </div>
+    <script>
+      var oBtn = document.querySelector('#btnId')
+      var oDiv = document.querySelector('div')
+      var oBody = document.querySelector('body')
+
+      // 绑定 onclick 事件，默认也是按冒泡顺序来执行的，没有捕获阶段。
+      oBtn.onclick = function () {
+        console.log('处于目标阶段，oBtn被点击了')
+      }
+
+      oDiv.addEventListener('click', function (e) {
+        console.log('click监听事件冒泡到div')
+      })
+
+      oBody.addEventListener('click', function () {
+        console.log('click监听事件冒泡到body')
+      })
+
+      document.addEventListener('click', function () {
+        console.log('click监听事件冒泡到document')
+      })
+
+      oDiv.addEventListener(
+        'click',
+        function () {
+          console.log('捕获到div被点击')
+        },
+        true // true表示在捕获阶段执行，false或不传参表示冒泡阶段
+      )
+      oBody.addEventListener(
+        'click',
+        function () {
+          console.log('捕获到body被点击')
+        },
+        true
+      )
+      document.addEventListener(
+        'click',
+        function () {
+          console.log('捕获到document被点击')
+        },
+        true
+      )
+    </script>
+  </body>
+</html>
