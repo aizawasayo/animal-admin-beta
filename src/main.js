@@ -15,6 +15,7 @@ import './globalComs'
 import router from './router'
 import store from './store'
 
+// vue 3 移除
 Vue.config.productionTip = false
 
 Vue.use(ElementUI, {

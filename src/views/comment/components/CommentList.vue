@@ -114,10 +114,10 @@ export default {
         .catch(err => this.$message.error(err.message))
     },
     handleDelete(id) {
-      this.commonApi.deleteById(id, deleteComment, this.fetchData)
+      this.commonApi.deleteById(id, deleteComment, this.fetchData, this.type)
     },
     handelMultipleDelete() {
-      this.commonApi.multipleDelete(this.multipleSelection, deleteComment, this.fetchData)
+      this.commonApi.multipleDelete(this.multipleSelection, deleteComment, this.fetchData, this.type)
     }
   }
 }

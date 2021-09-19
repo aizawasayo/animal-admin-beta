@@ -1,11 +1,11 @@
 <template>
   <div class="dashboard-container">
     <div class="dashboard-text">欢迎， {{ username }}</div>
-    <div class="test-title">这是页面引入图片，图片小于url-loader的limit值</div>
+    <!-- <div class="test-title">这是页面引入图片，图片小于url-loader的limit值</div>
     <img src="@/assets/denglun.jpg" class="test-image" />
     <div class="test-bg">这是引入背景图，css在组件内，图片大于url-loader的limit值</div>
     <div class="test-index-bg">这是引入背景图，css在index.scss，图片大于url-loader的limit值</div>
-    <div class="test-limit-bg">这是引入背景图，css在index.scss，图片小于url-loader的limit值</div>
+    <div class="test-limit-bg">这是引入背景图，css在index.scss，图片小于url-loader的limit值</div> -->
   </div>
 </template>
 

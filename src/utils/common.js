@@ -7,14 +7,16 @@ import { Message, MessageBox } from 'element-ui'
  * @callback {Function} 删除成功的回调
  * @returns {null}
  */
-export const deleteById = (id, deleteFun, callback) => {
+export const deleteById = (id, deleteFun, callback, type) => {
+  let params = [] // 用来处理评论 api 的特殊情况
+  type ? (params = [id, type]) : (params = [id])
   MessageBox.confirm('是否要永久删除该信息', '提示', {
     confirmButtonText: '确定',
     cancelButtonText: '取消',
     type: 'warn'
   })
     .then(() => {
-      deleteFun(id).then(res => {
+      deleteFun(...params).then(res => {
         Message.success(res.message)
         callback()
       })
@@ -24,7 +26,7 @@ export const deleteById = (id, deleteFun, callback) => {
     })
 }
 
-export const multipleDelete = (multiData, deleteFun, callback) => {
+export const multipleDelete = (multiData, deleteFun, callback, type) => {
   if (multiData.length === 0) {
     return Message.warning('请先选中至少一条数据')
   }
@@ -33,7 +35,7 @@ export const multipleDelete = (multiData, deleteFun, callback) => {
     id += val._id + ','
   })
   id = id.substring(0, id.length - 1)
-  deleteById(id, deleteFun, callback)
+  deleteById(id, deleteFun, callback, type)
 }
 
 export const uploadSuccess = res => {

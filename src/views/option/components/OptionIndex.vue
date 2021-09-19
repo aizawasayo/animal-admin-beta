@@ -21,7 +21,7 @@
         </el-row>
       </el-col>
       <el-col :span="8" class="flex-right">
-        <el-button type="danger" plain @click="handelMultipleDelete">批量删除</el-button>
+        <el-button type="danger" plain @click="handleMultipleDelete">批量删除</el-button>
       </el-col>
     </el-row>
     <el-tabs v-model="activeName" style="margin-top: 15px" type="card">
@@ -101,8 +101,8 @@ export default {
     handleEdit(arg) {
       this.commonApi.openEditForm(arg[0], 'option', getOption, this)
     },
-    handelMultipleDelete() {
-      this.$refs.optionList[this.tabIndex].handelMultipleDelete()
+    handleMultipleDelete() {
+      this.$refs.optionList[this.tabIndex].handleMultipleDelete()
     },
     fetchOptionData() {
       this.$refs.optionList.forEach(item => item.fetchData())

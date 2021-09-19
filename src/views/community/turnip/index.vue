@@ -163,7 +163,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="16">
-            <el-form-item v-show="!isPsw" label="联系方式" prop="contact">
+            <el-form-item v-show="!isLineBL" label="联系方式" prop="contact">
               <el-radio-group v-model="newTurnip.contact">
                 <el-radio label="SW">SW</el-radio>
                 <el-radio label="微信">微信</el-radio>
@@ -172,12 +172,12 @@
               </el-radio-group>
             </el-form-item>
           </el-col>
-          <el-col v-show="!isPsw" :span="8">
+          <el-col v-show="!isLineBL" :span="8">
             <el-form-item :label="newTurnip.contact" prop="contactDetail">
               <el-input v-model="newTurnip.contactDetail" :placeholder="'请输人' + contact" />
             </el-form-item>
           </el-col>
-          <el-col v-show="isPsw" :span="8">
+          <el-col v-show="isLineBL" :span="8">
             <el-form-item label="开岛密码" prop="psw">
               <el-input v-model="newTurnip.psw" placeholder="请输入开岛密码" />
             </el-form-item>
@@ -257,30 +257,18 @@ export default {
   computed: {
     ...mapGetters(['userId', 'roles']),
     isLineBL() {
-      let bl = false
-      this.newTurnip.isLineup === true && this.newTurnip.exchangeType === '我有价' ? (bl = true) : (bl = false)
-      return bl
+      return this.newTurnip.isLineup === true && this.newTurnip.exchangeType === '我有价' ? true : false
     },
     contact() {
-      let text = '直接输入12位好友编号(无需-分割)'
-      this.newTurnip.contact !== 'SW' ? (text = '联系方式') : '直接输入12位好友编号(无需-分割)'
-      return text
+      return this.newTurnip.contact !== 'SW' ? '联系方式' : '直接输入12位好友编号(无需-分割)'
     },
     isAutoBL() {
-      let bl = false
-      this.newTurnip.isAuto === true ? (bl = true) : (bl = false)
-      return bl
+      return this.newTurnip.isAuto === true ? true : false
     },
     isPrice() {
-      let bl = false
-      this.newTurnip.exchangeType === '我有菜' ? (bl = false) : (bl = true)
-      return bl
+      return this.newTurnip.exchangeType === '我有菜' ? false : true
     },
-    isPsw() {
-      let bl = true
-      this.newTurnip.exchangeType === '我有价' && this.newTurnip.isLineup === true ? (bl = true) : (bl = false)
-      return bl
-    },
+
     nowTime() {
       return timestamp()
     }

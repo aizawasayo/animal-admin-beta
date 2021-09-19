@@ -264,19 +264,13 @@ export default {
   computed: {
     ...mapGetters(['userId', 'roles']),
     isLineBL() {
-      let bl = false
-      this.newTrade.isLineup === true ? (bl = true) : (bl = false)
-      return bl
+      return this.newTrade.isLineup === true ? true : false
     },
     isAutoBL() {
-      let bl = false
-      this.newTrade.isAuto === true ? (bl = true) : (bl = false)
-      return bl
+      return this.newTrade.isAuto === true ? true : false
     },
     contact() {
-      let text = '直接输入12位好友编号(无需-分割)'
-      this.newTrade.contact !== 'SW' ? (text = '联系方式') : '直接输入12位好友编号(无需-分割)'
-      return text
+      return this.newTrade.contact !== 'SW' ? '联系方式' : '直接输入12位好友编号(无需-分割)'
     },
     nowTime() {
       return timestamp()
