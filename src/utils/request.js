@@ -6,7 +6,7 @@ import { getToken } from '@/utils/auth'
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-  // withCredentials: true, // send cookies when cross-domain requests
+  // withCredentials: true, // 发送跨域请求时携带 cookie 和 session，后端要配置相应的 cors
   timeout: 10000 // request timeout
 })
 
@@ -21,7 +21,8 @@ service.interceptors.request.use(
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
-      config.headers['X-Token'] = getToken()
+      // config.headers['X-Token'] = getToken()
+      config.headers['Authorization'] = `Bearer ${getToken()}`
     }
     return config
   },

@@ -1,14 +1,16 @@
-/* Layout */
-import Layout from '@/layout'
 import Vue from 'vue'
 import Router from 'vue-router'
+
+Vue.use(Router)
+
+/* Layout */
+import Layout from '@/layout'
+
 /* Router Modules */
 import archiveRouter from './modules/archive'
 import guideRouter from './modules/guide'
 import museumRouter from './modules/museum'
 import optionRouter from './modules/option'
-
-Vue.use(Router)
 
 /**
 // 当设置 true 的时候该路由不会在侧边栏出现 如401，login等页面，或者如一些编辑页面/edit/1

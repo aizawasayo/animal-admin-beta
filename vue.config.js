@@ -1,7 +1,7 @@
 'use strict'
 const path = require('path')
 const defaultSettings = require('./src/settings.js')
-const port = process.env.port || process.env.npm_config_port || 9528 // dev port
+const port = process.env.port || process.env.npm_config_port || 9529 // dev port
 const name = defaultSettings.title
 // 定义resolve方法，把相对路径转换成绝对路径
 // const resolve = dir => path.join(__dirname, dir)
@@ -35,6 +35,10 @@ const externals = {
 }
 
 module.exports = {
+  publicPath:
+    process.env.NODE_ENV !== 'development' ? 'https://cdn.jsdelivr.net/gh/aizawasayo/cdn-animal-admin-beta/dist/' : '/',
+  // publicPath: 'https://cdn.example.com/assets/', // CDN（总是 HTTPS 协议）
+  // publicPath: '//cdn.example.com/assets/', // CDN（协议相同）
   // publicPath: '/', // 用法和 webpack 的 output.publicPath 一致，资源文件引用的目录，打包后浏览器访问服务时的 url 路径中通用的前缀部分。
   // outputDir: 'dist', // 生产环境构建文件的目录，相当于 webpack的 output.path，构建项目时所有输出文件的目标路径/打包后文件在硬盘中的存储位置
   assetsDir: 'static', // 打包时静态资源的输出目录路径（相对于outputDir的路径，即在dist目录下）
@@ -99,7 +103,7 @@ module.exports = {
 
     // 添加插件
     // 注意链式配置webpack，不用再new去创建一个插件了，这件事已经默认帮我们做好了。
-    config.plugin('webpack-bundle-analyzer').use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+    // config.plugin('webpack-bundle-analyzer').use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
     // 插件移除
     config.plugins.delete('prefetch')
     // 插件修改
@@ -171,6 +175,17 @@ module.exports = {
         .end()
         .enforce('post') // 表示先执行配置在下面那个loader
 
+      config
+        .plugin('ScriptExtHtmlWebpackPlugin')
+        .after('html')
+        .use('script-ext-html-webpack-plugin', [
+          {
+            // 把单独抽出的 `runtime` 内联到 index.html
+            inline: /runtime\..*\.js$/
+          }
+        ])
+        .end()
+      config.optimization.runtimeChunk('single')
       // 代码细分抽离优化
       config.optimization.splitChunks({
         chunks: 'all', // 表明选择哪些 chunk 进行优化。通用设置，可选值：all/async/initial。设置为 all 意味着 chunk 可以在异步和非异步 chunk 之间共享。
@@ -183,8 +198,8 @@ module.exports = {
             // 第三方库
             name: 'chunk-libs',
             test: /[\\/]node_modules[\\/]/, // 请注意'[\\/]'的用法，是具有跨平台兼容性的路径分隔符
-            priority: 20 // 优先级，执行顺序就是权重从高到低
-            // chunks: 'initial' // 只打包最初依赖的第三方
+            priority: 20, // 优先级，执行顺序就是权重从高到低
+            chunks: 'initial' // 只打包最初依赖的第三方
             // reuseExistingChunk: true
           },
           elementUI: {
@@ -194,12 +209,6 @@ module.exports = {
             // test: /[\\/]node_modules[\\/]_?element-ui(.*)/,
             priority: 30 // 权重必须比 libs 大，不然会被打包进 libs 里
           },
-          //     'async-libs': {
-          //       name: 'chunk-async-libs',
-          //       test: /[\\/]node_modules[\\/]/, // 请注意'[\\/]'的用法，是具有跨平台兼容性的路径分隔符
-          //       priority: 20, // 优先级，执行顺序就是权重从高到低
-          //       chunks: 'async'
-          //     },
           commons: {
             name: 'chunk-commons',
             minChunks: 2, // 拆分前，这个模块至少被不同 chunk 引用的次数
@@ -221,17 +230,6 @@ module.exports = {
             },
             priority: 50
           }
-          // utils: {
-          //   // 公用代码
-          //   name: 'chunk-utils',
-          //   test: /[\\/]src[\\/](utils|filters|api)[\\/]/,
-          //   //test: /[\\/]src[\\/]api[\\/]/,
-          //   // maxInitialRequests: 5, //入口点的最大并行请求数
-          //   // minChunks: 2,
-          //   priority: 10,
-          //   // chunks: 'initial',
-          //   reuseExistingChunk: true
-          // }
         }
       })
       // 添加 cdn 参数到 htmlWebpackPlugin 配置中
@@ -252,8 +250,7 @@ module.exports = {
     proxy: {
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       [process.env.VUE_APP_BASE_API]: {
-        target: 'http://106.54.168.208:1016', // 腾讯云服务器
-        // target: 'http://localhost:1016',
+        target: process.env.VUE_APP_REAL_API, // 腾讯云服务器
         changeOrigin: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: ''

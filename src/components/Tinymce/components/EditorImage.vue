@@ -74,7 +74,6 @@ export default {
       const objKeyArr = Object.keys(this.listObj)
       for (let i = 0, len = objKeyArr.length; i < len; i++) {
         if (this.listObj[objKeyArr[i]].uid === uid) {
-          // this.listObj[objKeyArr[i]].url = 'http://106.54.168.208:1016' + fileSrc
           this.listObj[objKeyArr[i]].url = process.env.VUE_APP_REAL_API + fileSrc
           this.listObj[objKeyArr[i]].hasSuccess = true
           return
