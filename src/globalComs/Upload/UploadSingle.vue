@@ -2,7 +2,7 @@
 <template>
   <div class="upload-container">
     <el-upload
-      :action="uploadUrl"
+      :action="`${apiUrl}/admin/single/upload`"
       name="avatar"
       :multiple="false"
       :show-file-list="false"
@@ -87,9 +87,6 @@ export default {
     }
   },
   computed: {
-    uploadUrl() {
-      return process.env.VUE_APP_BASE_API + '/admin/single/upload'
-    },
     imageUrl() {
       return this.value ? process.env.VUE_APP_BASE_API + this.value : ''
     },

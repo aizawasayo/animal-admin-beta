@@ -8,7 +8,7 @@
       :on-success="handleImageSuccess"
       class="image-uploader"
       drag
-      :action="uploadUrl"
+      :action="`${apiUrl}/admin/single/upload`"
     >
       <i class="el-icon-upload" />
       <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -45,9 +45,6 @@ export default {
     return {}
   },
   computed: {
-    uploadUrl() {
-      return process.env.VUE_APP_BASE_API + '/admin/single/upload'
-    },
     imageUrl() {
       return this.value ? process.env.VUE_APP_BASE_API + this.value : ''
     }

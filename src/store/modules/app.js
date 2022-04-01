@@ -3,8 +3,7 @@ import Cookies from 'js-cookie'
 const state = {
   sidebar: { opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true, withoutAnimation: false },
   device: 'desktop',
-  size: Cookies.get('size') || 'medium',
-  uploadUrl: process.env.VUE_APP_BASE_API + '/admin/upload' // 批量上传地址
+  size: Cookies.get('size') || 'medium'
 }
 
 const mutations = {

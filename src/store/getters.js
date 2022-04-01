@@ -4,7 +4,6 @@ const getters = {
   device: state => state.app.device,
   visitedViews: state => state.tagsView.visitedViews,
   cachedViews: state => state.tagsView.cachedViews,
-  uploadUrl: state => state.app.uploadUrl,
   token: state => state.user.token,
   userId: state => state.user.userId,
   avatar: state => state.user.avatar,

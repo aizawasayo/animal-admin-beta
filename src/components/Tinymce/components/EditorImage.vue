@@ -20,7 +20,7 @@
         :on-success="handleSuccess"
         :before-upload="beforeUpload"
         class="editor-slide-upload"
-        :action="uploadUrl"
+        :action="`${apiUrl}/admin/upload`"
         list-type="picture-card"
       >
         <el-button size="small" type="primary"> 点击上传 </el-button>
@@ -32,8 +32,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
   name: 'EditorSlideUpload',
   props: {
@@ -50,7 +48,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['uploadUrl'])
+    // ...mapGetters(['uploadUrl'])
   },
   methods: {
     checkAllSuccess() {
