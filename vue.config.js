@@ -241,6 +241,7 @@ module.exports = {
     }
   },
   devServer: {
+    // 开发服务器选项
     open: true,
     overlay: {
       warnings: false,
