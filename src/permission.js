@@ -19,10 +19,10 @@ router.beforeEach(async (to, from, next) => {
   // set page title
   document.title = getPageTitle(to.meta.title)
 
-  // determine whether the user has logged in
+  // 每访问一次路由都确认下是否在登录状态
   const hasToken = getToken()
 
-  // 判断是否存在token,没有就重新登陆
+  // 判断本地是否存在 token, 没有就重新登陆
   if (hasToken) {
     if (to.path === '/login') {
       // if is logged in, redirect to the home page
@@ -31,13 +31,14 @@ router.beforeEach(async (to, from, next) => {
       })
       NProgress.done() // hack: https://github.com/PanJiaChen/vue-element-admin/pull/2939
     } else {
-      // 判断用户是否通过getInfo获得了权限角色
+      // 判断用户是否通过 getInfo 获得了权限角色
       const hasRoles = store.getters.roles && store.getters.roles.length > 0
+
       if (hasRoles) {
         next()
       } else {
         try {
-          // get user info
+          // 这个请求 api 需要登录权限，顺便可以检测 token 是否在有效期
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
           const { roles } = await store.dispatch('user/getInfo')
 
@@ -56,10 +57,10 @@ router.beforeEach(async (to, from, next) => {
             replace: true
           })
         } catch (error) {
-          console.warn(error)
           // remove token and go to login page to re-login
+          console.log(error)
           await store.dispatch('user/resetToken')
-          Message.error(error.Message || 'Has Error')
+          // Message.error(error.Message || 'Has Error')
           next(`/login?redirect=${to.path}`)
           NProgress.done()
         }

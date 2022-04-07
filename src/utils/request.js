@@ -57,15 +57,8 @@ service.interceptors.response.use(
       // console.log(error.response.headers)
       if ([401, 403].includes(error.response.status)) {
         // token 已过期，删除本地 token
-        MessageBox.confirm('你已经登出了账户, 你可以关闭这个页面，或者重新登录', '确认登出', {
-          confirmButtonText: '重新登录',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          store.dispatch('user/resetToken').then(() => {
-            location.reload()
-          })
-        })
+        store.dispatch('user/resetToken')
+        Message({ message: '你已经登出了账户, 你可以重新登录，或者关闭这个页面', type: 'warning', duration: 5 * 1000 })
       }
     } else if (error.request) {
       // 请求已发出但未收到响应. `error.request` 是浏览器中 XMLHttpRequest 的一个实例
