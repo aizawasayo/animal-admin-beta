@@ -5,6 +5,7 @@ const guideRouter = {
   path: '/guide',
   component: Layout,
   redirect: '/guide/index',
+  meta: { roles: ['admin'] },
   children: [
     {
       path: 'index',
@@ -12,8 +13,7 @@ const guideRouter = {
       name: 'Guide',
       meta: {
         title: '攻略管理',
-        icon: 'guide',
-        roles: ['admin']
+        icon: 'guide'
       }
     },
     {
@@ -24,8 +24,7 @@ const guideRouter = {
         title: '新增攻略',
         icon: 'create',
         noCache: true,
-        activeMenu: '/guide/index',
-        roles: ['admin']
+        activeMenu: '/guide/index'
       },
       hidden: true
     },
@@ -36,8 +35,7 @@ const guideRouter = {
       meta: {
         title: '编辑攻略',
         noCache: true,
-        activeMenu: '/guide/index',
-        roles: ['admin']
+        activeMenu: '/guide/index'
       },
       hidden: true
     }

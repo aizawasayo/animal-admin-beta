@@ -19,8 +19,7 @@ const museumRouter = {
       name: 'Fish',
       meta: {
         title: '鱼类',
-        icon: 'fish',
-        roles: ['admin']
+        icon: 'fish'
       }
     },
     {
@@ -29,8 +28,7 @@ const museumRouter = {
       name: 'Insect',
       meta: {
         title: '昆虫',
-        icon: 'bug',
-        roles: ['admin']
+        icon: 'bug'
       }
     },
     {
@@ -39,8 +37,7 @@ const museumRouter = {
       name: 'Fossil',
       meta: {
         title: '化石',
-        icon: 'dragon',
-        roles: ['admin']
+        icon: 'dragon'
       }
     },
     {
@@ -49,8 +46,7 @@ const museumRouter = {
       name: 'Artwork',
       meta: {
         title: '艺术品',
-        icon: 'art',
-        roles: ['admin']
+        icon: 'art'
       }
     },
     {
@@ -59,8 +55,7 @@ const museumRouter = {
       name: 'Halobios',
       meta: {
         title: '海洋生物',
-        icon: 'sea',
-        roles: ['admin']
+        icon: 'sea'
       }
     }
   ]

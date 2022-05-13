@@ -155,6 +155,7 @@ export const asyncRoutes = [
   {
     path: '/user',
     component: Layout,
+    meta: { roles: ['admin'] },
     children: [
       {
         path: 'index',
@@ -162,8 +163,7 @@ export const asyncRoutes = [
         name: 'User',
         meta: {
           title: '用户管理',
-          icon: 'user',
-          roles: ['admin']
+          icon: 'user'
         }
       }
     ]
@@ -171,6 +171,7 @@ export const asyncRoutes = [
   {
     path: '/islander',
     component: Layout,
+    meta: { roles: ['admin'] },
     children: [
       {
         path: 'index',
@@ -178,8 +179,7 @@ export const asyncRoutes = [
         name: 'Islander',
         meta: {
           title: '岛民',
-          icon: 'people',
-          roles: ['admin']
+          icon: 'people'
         }
       }
     ]
@@ -190,6 +190,7 @@ export const asyncRoutes = [
   {
     path: '/banner',
     component: Layout,
+    meta: { roles: ['admin'] },
     children: [
       {
         path: 'index',
@@ -197,8 +198,7 @@ export const asyncRoutes = [
         name: 'Banner',
         meta: {
           title: '焦点图',
-          icon: 'banner',
-          roles: ['admin']
+          icon: 'banner'
         }
       }
     ]
@@ -206,6 +206,7 @@ export const asyncRoutes = [
   {
     path: '/comment',
     component: Layout,
+    meta: { roles: ['admin'] },
     children: [
       {
         path: 'index',
@@ -213,8 +214,7 @@ export const asyncRoutes = [
         name: 'Comment',
         meta: {
           title: '评论管理',
-          icon: 'message',
-          roles: ['admin']
+          icon: 'message'
         }
       }
     ]

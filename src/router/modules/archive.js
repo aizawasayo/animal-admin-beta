@@ -19,8 +19,7 @@ const archiveRouter = {
       name: 'Furniture',
       meta: {
         title: '家具',
-        icon: 'fish',
-        roles: ['admin']
+        icon: 'fish'
       }
     },
     {
@@ -29,8 +28,7 @@ const archiveRouter = {
       name: 'Clothing',
       meta: {
         title: '服饰',
-        icon: 'dress',
-        roles: ['admin']
+        icon: 'dress'
       }
     },
     {
@@ -39,8 +37,7 @@ const archiveRouter = {
       name: 'Plant',
       meta: {
         title: '植物',
-        icon: 'plant',
-        roles: ['admin']
+        icon: 'plant'
       }
     },
     {
@@ -49,8 +46,7 @@ const archiveRouter = {
       name: 'Material',
       meta: {
         title: '素材',
-        icon: 'shell',
-        roles: ['admin']
+        icon: 'shell'
       }
     },
     {
@@ -59,8 +55,7 @@ const archiveRouter = {
       name: 'Tool',
       meta: {
         title: '工具',
-        icon: 'tool',
-        roles: ['admin']
+        icon: 'tool'
       }
     },
     {
@@ -69,8 +64,7 @@ const archiveRouter = {
       name: 'Recipe',
       meta: {
         title: 'DIY配方',
-        icon: 'book',
-        roles: ['admin']
+        icon: 'book'
       }
     },
     {
@@ -79,8 +73,7 @@ const archiveRouter = {
       name: 'Record',
       meta: {
         title: '唱片',
-        icon: 'record',
-        roles: ['admin']
+        icon: 'record'
       }
     }
   ]
